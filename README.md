@@ -26,7 +26,7 @@ This project is a simple **Job Portal** application where users can register, lo
 ## How to Run the Project
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/job-portal.git
+   git clone https://github.com/RYangunwAN/JobPortalGDPS.git
 2. Run the DDL and DML scripts.
 3. Set the database server name in appsettings.json. 
 
