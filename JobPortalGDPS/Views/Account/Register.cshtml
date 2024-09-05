@@ -1,0 +1,78 @@
+﻿@model JobPortalGDPS.Models.RegisterViewModel
+
+<!-- Styling for centering the form -->
+<style>
+    .register-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full height of the viewport */
+    }
+
+    .register-box {
+        background-color: #f9f9f9;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .register-box label {
+        font-weight: bold;
+    }
+
+    .register-box input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .register-box button {
+        width: 100%;
+        padding: 0.5rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .register-box button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="register-container">
+    <div class="register-box">
+        <form asp-action="Register" method="post">
+            <div>
+                <label>Email</label>
+                <input asp-for="Email" />
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="password" asp-for="Password" />
+            </div>
+            <div>
+                <label>Confirm Password</label>
+                <input type="password" asp-for="ConfirmPassword" />
+            </div>
+            <div>
+                <label>First Name</label>
+                <input asp-for="FirstName" />
+            </div>
+            <div>
+                <label>Last Name</label>
+                <input asp-for="LastName" />
+            </div>
+            <div>
+                <label>Phone Number</label>
+                <input asp-for="PhoneNumber" />
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
