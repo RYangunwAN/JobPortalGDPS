@@ -1,0 +1,8 @@
+﻿@model Job
+
+<div class="container">
+    <h2>@Model.Title</h2>
+    <p>@Model.Description</p>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Job Listings</a>
+    <a href="@Url.Action("Apply", "Job", new { jobId = Model.JobId })" class="btn btn-success">Apply for this Job</a>
+</div>

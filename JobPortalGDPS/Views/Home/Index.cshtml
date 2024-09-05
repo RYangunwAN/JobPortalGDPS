@@ -1,8 +1,44 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Job>
+
+@{
+    var userId = ViewData["UserId"] as string; // Retrieve UserId from ViewData
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; border-radius: 8px;">
+    <div class="d-flex justify-content-end mb-3">
+        <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+
+    <h2>Job Listings</h2>
+    @if (!Model.Any())
+    {
+            <p>No jobs available.</p>
+    }
+    else
+    {
+            <div class="row">
+            @foreach (var job in Model)
+            {
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">@job.Title</h5>
+                                    <p class="card-text">@job.Description</p>
+                                    <a href="@Url.Action("Details", new { id = job.JobId })" class="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+            }
+            </div>
+    }
 </div>
+
+<script>
+    // Retrieve UserId from the server-side variable
+    var userId = '@userId';
+
+    // Log UserId to the web console
+    console.log("Current logged-in UserId:", userId);
+</script>

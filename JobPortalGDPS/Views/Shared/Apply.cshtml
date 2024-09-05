@@ -1,0 +1,43 @@
+﻿@model JobPortalGDPS.Models.Application
+
+<div class="container">
+    <h2>Apply for Job</h2>
+    <form asp-controller="Application" asp-action="Apply" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="UserId" value="@Model.UserId" />
+        <input type="hidden" name="JobId" value="@Model.JobId" />
+        <div class="form-group">
+            <label for="Resume">Resume (PDF)</label>
+            <input type="file" name="Resume" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Application</button>
+    </form>
+</div>
+
+
+
+@section Scripts {
+        <script>
+            document.querySelector('form').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                var formData = new FormData(this);
+
+                fetch('@Url.Action("Apply", "Application")', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                            window.location.href = data.redirectUrl;
+                    } else {
+                        alert('Error: ' + (data.message || 'Error submitting application.'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error submitting application.');
+                });
+            });
+        </script>
+}
